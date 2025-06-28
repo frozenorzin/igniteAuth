@@ -1,0 +1,3 @@
+2025-06-29 01:31:47 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-06-29 01:32:46 | User: root@igniteAuth | Cmd: jsadcjsajd hsd | Target: addr_dev1 | Result: ❌ REJECTED: Command does not match intent-purpose map.
+2025-06-29 01:33:33 | User: root@igniteAuth | Cmd: powerline_diagnostics | Target: addr_dev2 | Result: ❌ REJECTED: Command does not match intent-purpose map.

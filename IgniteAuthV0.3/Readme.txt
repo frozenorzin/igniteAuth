@@ -1,6 +1,6 @@
 IgniteAuthV0.3/
 │
-├── app.py                  # Flask app starter
+├── server.py                  # Flask app starter
 ├── dashboard.py            # Streamlit visual layer
 ├── auth/
 │   └── token_handler.py    # Admin & session token generation/verification

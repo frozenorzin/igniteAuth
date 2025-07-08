@@ -1,7 +1,24 @@
 # Ignite Auth V0.3 — dashboard.py
 
+"""
+            Admin dashboard 
+
+"""
+
+
+# backed up version ,, last working model ,, made on 
+
+
 import streamlit as st
 import requests
+import os 
+
+
+
+
+
+LOG_FILE_PATH = os.path.join("logs", "event.log")
+
 
 # === Page Config ===
 st.set_page_config(page_title="IgniteAuth Admin", layout="centered")
@@ -48,10 +65,10 @@ def login_page():
 # === Dashboard Control Panel ===
 def dashboard():
     st.title("Control Panel: IgniteAuth V0.3")
-    st.sidebar.markdown("**Session initiated: Admin**")
+    st.sidebar.markdown("**Session initiated: commander**")
     st.sidebar.button("Logout", on_click=lambda: st.session_state.update({"authenticated": False}))
 
-    tab1, tab2 = st.tabs(["⚙️ Subsystem Control", "📄 Event Log (Coming Soon)"])
+    tab1, tab2 = st.tabs(["⚙️ Subsystem Control", "📄 Event Log (server log)"])
 
     with tab1:
         st.markdown("## 🧠 Sub-System Control Panel")
@@ -78,25 +95,49 @@ def dashboard():
 
             submitted = st.form_submit_button("✅ Verify Command")
 
-        if submitted:
-            payload = {
+            if submitted:
+                payload = {
                 "token": token,
                 "intent": intent,
                 "command": command,
-                "target_node": target_node
-            }
+                "target_node": target_node,
+                "username": "root@igniteAuth"  # 👈 added hardcoded commander identity
+               }
+    
+                try:
+                    response = requests.post("http://127.0.0.1:5000/verify_command", json=payload)
+                    if response.status_code == 200:
+                        st.success(response.json().get("result", "✅ Command accepted"))
+                    elif response.status_code == 403:
+                        st.warning("🔒 Session missing or unauthorized access.")
+                    else:
+                        st.error(f"Server error: {response.status_code}")
+                except Exception as e:
+                    st.error(f"Connection error: {e}")
 
-            try:
-                response = requests.post("http://127.0.0.1:5000/verify_command", json=payload)
-                if response.status_code == 200:
-                    st.success(response.json().get("result", "✅ Command accepted"))
-                elif response.status_code == 403:
-                    st.warning("🔒 Session missing or unauthorized access.")
+                
+     # === Tab 2: Log Viewer ===
+    with tab2:
+        st.markdown("## 📄 Command Event Logs")
+        st.caption("Showing only verified admin logs (User: root@igniteAuth)")
+
+        if st.button("🔄 Refresh Log"):
+            st.experimental_rerun()
+
+        if os.path.exists(LOG_FILE_PATH):
+            with open(LOG_FILE_PATH, "r", encoding="utf-8") as log_file:
+                logs = log_file.readlines()
+                logs = [line for line in logs if "User: root@igniteAuth" in line]  # 💡 filter only root@igniteAuth
+                logs = logs[::-1]  # Show latest first
+
+                if logs:
+                    for line in logs:
+                        st.code(line.strip(), language="bash")
                 else:
-                    st.error(f"Server error: {response.status_code}")
-            except Exception as e:
-                st.error(f"Connection error: {e}")
-
+                    st.info("No verified admin logs found yet.")
+        else:
+            st.warning("No logs available yet.")
+            
 # === Route Control ===
 if not st.session_state.authenticated:
     login_page()

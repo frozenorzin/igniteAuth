@@ -1,0 +1,38 @@
+2025-06-29 01:31:47 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-06-29 01:32:46 | User: root@igniteAuth | Cmd: jsadcjsajd hsd | Target: addr_dev1 | Result: ❌ REJECTED: Command does not match intent-purpose map.
+2025-06-29 01:33:33 | User: root@igniteAuth | Cmd: powerline_diagnostics | Target: addr_dev2 | Result: ❌ REJECTED: Command does not match intent-purpose map.
+2025-07-06 00:31:48 | User: Unverified | Cmd: run_self_test | Target: addr_dev2 | Result: ✅ APPROVED: 'run_self_test' under 'test_cases' will execute on node_2.
+2025-07-06 00:41:06 | User: Unverified | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 00:44:29 | User: Unverified | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 00:45:03 | User: Unverified | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 00:48:09 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:04:57 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:28:30 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:28:44 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:29:15 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:35:31 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:37:41 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:37:47 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:45:28 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 01:45:45 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-06 01:56:48 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:00:19 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:08:26 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:08:41 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:09:12 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:15:05 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:15:41 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:15:55 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:16:12 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:16:35 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:19:50 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:20:37 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:20:39 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:20:40 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-06 02:20:40 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-09 01:46:33 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-09 01:53:30 | User: root@igniteAuth | Cmd: reboot_firmware | Target: addr_dev1 | Result: ✅ APPROVED: 'reboot_firmware' under 'emergency' will execute on node_1.
+2025-07-09 01:53:35 | User: root@igniteAuth | Cmd: run_self_test | Target: addr_dev1 | Result: ❌ REJECTED: Command does not match intent-purpose map.
+2025-07-09 01:56:35 | User: root@igniteAuth | Cmd: run_self_test | Target: addr_dev2 | Result: ❌ REJECTED: Invalid session/admin token.
+2025-07-09 01:58:12 | User: root@igniteAuth | Cmd: run_self_test | Target: addr_dev2 | Result: ✅ APPROVED: 'run_self_test' under 'test_cases' will execute on node_2.
+2025-07-09 02:04:27 | User: root@igniteAuth | Cmd: run_self_test | Target: addr_dev2 | Result: ✅ APPROVED: 'run_self_test' under 'test_cases' will execute on node_2.

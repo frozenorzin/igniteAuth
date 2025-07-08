@@ -46,7 +46,13 @@ Basic Python prototype for:
 - Immutable logging system for auditing
 - Fail-safe fallback paths for invalid requests
 
-### 🔭 `v0.3+` — **Real-World Deployment Ready**
+### 🔜 `v0.3` — **Server calls and full stack structure**
+- JWT token generation
+- session management
+- event logging for forenscics
+  
+
+### 🔭 `v1.0+` — **Real-World Deployment Ready**
 - Porting to C for embedded boards (STM32/ESP32)
 - OTA secure firmware hooks
 - MQTT or LoRa integration for field communication

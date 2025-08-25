@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IgniteAuth Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    header { background-color: #111; color: #fff; padding: 20px; text-align: center; }
+    .container { max-width: 900px; margin: 30px auto; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.15); }
+    h2 { color: #222; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    .tab { padding: 10px 20px; background-color: #e0e0e0; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .tab.active { background-color: #333; color: #fff; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    select, button { padding: 10px; margin-top: 10px; width: 100%; border-radius: 4px; border: 1px solid #ccc; }
+    button { background-color: #333; color: white; font-weight: bold; cursor: pointer; }
+    button:hover { background-color: #444; }
+    .log-box { background-color: #f9f9f9; padding: 10px; margin-top: 10px; border-left: 4px solid #444; font-family: monospace; white-space: pre-wrap; max-height: 320px; overflow: auto; }
+    .toolbar { display:flex; justify-content: flex-end; gap: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>IgniteAuth Admin Dashboard</h1>
+    <p>Secure Control Plane Access • V0.4</p>
+  </header>
+
+  <div class="container">
+    <div class="toolbar">
+      <button id="logoutBtn" title="Logout">Logout</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('control')">⚙️ Subsystem Control</div>
+      <div class="tab" onclick="switchTab('logs')">📄 Event Logs</div>
+    </div>
+
+    <!-- Control Panel -->
+    <div id="control" class="tab-content active">
+      <h2>🧠 Sub-System Control Panel</h2>
+      <p>Control your nodes securely with intent verification.</p>
+
+      <form id="commandForm">
+        <label>Target Node</label>
+        <select name="targetNode" required>
+          <option value="addr_dev1">Sensor (node_1)</option>
+          <option value="addr_dev2">UART (node_2)</option>
+          <option value="addr_dev3">Actuator (Comm / node_3)</option>
+        </select>
+
+        <label>Command Intent</label>
+        <select name="intent" required>
+          <option value="emergency">Emergency</option>
+          <option value="test_cases">Test-Cases</option>
+          <option value="criticality_testing">Criticality Testing</option>
+        </select>
+
+        <label>Command to Execute</label>
+        <select name="command" required>
+          <option value="reboot_firmware">Reboot-Firmware</option>
+          <option value="run_self_test">Run Self-Test</option>
+          <option value="powerline_diagnostics">Powerline Diagnostics</option>
+        </select>
+
+        <button type="submit">✅ Verify Command</button>
+      </form>
+    </div>
+
+    <!-- Logs -->
+    <div id="logs" class="tab-content">
+      <h2>📄 Command Event Logs</h2>
+      <p>Showing only verified admin logs (User: <b>root@igniteAuth</b>)</p>
+      <div class="log-box" id="logsBox"></div>
+    </div>
+  </div>
+
+<script>
+  // 🛡️ Enforce session on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("igniteAuthToken");
+    if (!token) {
+      alert("⚠️ No active session. Please log in again.");
+      window.location.href = "/login";
+    }
+  });
+
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('igniteAuthToken');
+    window.location.href = '/login';
+  });
+
+  // 🧭 Tabs
+  function switchTab(tabName) {
+    document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+    document.getElementById(tabName).classList.add("active");
+    document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add("active");
+  }
+
+  // 🧾 Logs helper
+  function appendLog(text, type='info') {
+    const box = document.getElementById('logsBox');
+    const line = document.createElement('div');
+    line.style.marginBottom = '6px';
+    line.textContent = `[${new Date().toLocaleString()}] ${text}`;
+    if (type === 'error') line.style.color = '#b00020';
+    if (type === 'success') line.style.color = '#0b7a0b';
+    box.prepend(line);
+  }
+
+  // 🚀 Submit command using Bearer token (no token in body)
+  document.getElementById("commandForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const token = localStorage.getItem("igniteAuthToken");
+    if (!token) {
+      appendLog("No active session. Redirecting to login...", "error");
+      return (window.location.href = "/login");
+    }
+
+    const formData = new FormData(this);
+    const payload = {
+      targetNode: formData.get("targetNode"),
+      intent: formData.get("intent"),
+      command: formData.get("command")
+    };
+
+    try {
+      const response = await fetch("/trigger-command", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.status === 401) {
+        // token expired/invalid
+        localStorage.removeItem("igniteAuthToken");
+        window.location.href = "/login";
+        return;
+      }
+
+      const data = await response.json();
+
+      if (response.ok) {
+        appendLog(`✅ ${data.message} | 🔧 ${data.output}`, "success");
+        switchTab('logs');
+      } else {
+        appendLog(`❌ ${data.message || 'Command failed'}`, "error");
+      }
+    } catch (err) {
+      console.error(err);
+      appendLog("❌ Network or server error occurred.", "error");
+    }
+  });
+</script>
+</body>
+</html>

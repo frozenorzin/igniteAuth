@@ -1,0 +1,5 @@
+[23:48:59] | SID=a | INTENT=b | COMMAND=c | TARGET=d | STATUS=Policy validation Failed
+[23:49:19] | SID=a | INTENT=firmware_reboot | COMMAND=rebootF | TARGET=GPIO | STATUS=Executed binary on GPIO
+[23:55:20] | SID=s1 | INTENT=firmware_reboot | COMMAND=rebootF | TARGET=driver | STATUS=Executed binary on driver
+[00:17:36] | SID=a | INTENT=b | COMMAND=c | TARGET=d | STATUS=Policy validation Failed
+[00:29:41] | SID=a | INTENT=b | COMMAND=c | TARGET=d | STATUS=Policy validation Failed

@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<process.h>
-
+#include "IG_executor.h"
 #include "../include/IG_targets.h" // paths for binaries 
 
 
@@ -15,10 +15,11 @@ void execute_target_bin(const char *path) {
         path,
         path,
         NULL
-    )
+    );
 
-    if(pid==-1) perror("_spawnl Failed");
-
+    if(pid==-1){
+        perror("_spawnl Failed");
+    }
     
 }
 

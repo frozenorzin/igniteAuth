@@ -1,53 +1,86 @@
-📖 Version History
+# igniteAuth 🔐  
+A lightweight control plane security framework for intent-driven access and policy enforcement.
 
-v0.1 — Simulation Core
+## ❗ Problem
 
-Admin verification
+Modern systems often rely on scattered authentication logic and inconsistent access control.
 
-Intent-to-task validation
+- APIs validate identity but not intent  
+- Authorization rules are hardcoded and fragmented  
+- No clear control plane for enforcing decisions  
 
-Secure command routing via dictionaries
+This leads to:
+- insecure command execution  
+- poor auditability  
+- difficulty scaling secure systems
 
-Simulated command execution
+## 🚀 Solution
 
-v0.2 — API + Logging Layer
+igniteAuth introduces a structured control plane that:
 
-Flask REST API for remote command packets
+- Maps user intent → validated actions  
+- Enforces policy before execution  
+- Routes commands securely across system layers  
+- Logs every decision for audit and forensics  
 
-JSON token structure with optional signing
+It separates:
+- **Decision logic (control plane)**  
+- **Execution logic (data plane)**
 
-Immutable logging system for auditing
+## 🧩 Core Features
 
-Fail-safe fallback paths for invalid requests
+- 🔐 Intent-based validation using hashed representations  
+- ⚙️ Role-based access control (RBAC)  
+- 🔄 Secure command routing engine  
+- 📜 Immutable audit logging  
+- 🧠 Modular policy enforcement layer  
+- 🌐 API interface for remote command validation  
+- 🧱 Embedded-ready control core (C)
 
-v0.3 — Server calls + Full Stack Structure
+## 🧪 Example Flow
 
-JWT token generation
+1. Client sends a command request with token  
+2. Intent is hashed and validated  
+3. Policy engine checks role + permissions  
+4. If valid → command routed to execution  
+5. Event is logged (success/failure)  
 
-Session management
+Invalid requests trigger:
+- fallback logic  
+- audit logging  
+- no execution
 
-Event logging for forensics
+## 📖 Version History
 
-v0.4 — Embedded C Control Core (🔥 Current)
+### v0.1 — Simulation Core
+- Admin verification  
+- Intent-to-task validation  
+- Secure command routing  
+- Simulated execution  
 
-Secure command execution in C
+### v0.2 — API + Logging Layer
+- Flask REST API  
+- JSON token structure  
+- Immutable logging  
+- Fail-safe fallback  
 
-Role-based CLI admin verification
+### v0.3 — Server Integration
+- JWT token generation  
+- Session management  
+- Event logging  
 
-Modular command routing functions
+### v0.4 — Embedded Control Core (Current 🔥)
+- Secure command execution in C  
+- CLI-based admin verification  
+- Modular routing functions  
+- Memory-safe structures  
+- Ready for MCU deployment (STM32 / ESP32)
 
-Memory-safe structures for task execution
+## 📌 Summary
 
-Ready for extension to MCU (STM32/ESP32)
+igniteAuth is not just an authentication layer.
 
-🔭 v1.0+ — Real-World Deployment
-
-Porting to production embedded boards
-
-OTA secure firmware hooks
-
-MQTT/LoRa field communication
-
-Role-based dynamic access control
-
-AI-driven anomaly intent detection
+It is a control plane system that ensures:
+- only valid intent becomes execution  
+- every action is verifiable  
+- policies are enforced consistently across environments
